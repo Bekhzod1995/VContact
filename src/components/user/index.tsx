@@ -71,9 +71,9 @@ function List() {
     setLoading(true);
     const total = await getCountFromServer(usersCollectionRef);
     const totalUsersNumber = total.data().count;
-    let lastOfCurrent = "";
-    let lastVisible = "";
-    let initialRequest = "";
+    let lastOfCurrent;
+    let lastVisible;
+    let initialRequest;
 
     if (Number(searchParams.get("page")) === 1) {
       initialRequest = query(usersCollectionRef, limit(2));
@@ -100,6 +100,7 @@ function List() {
     const documentSnapshots = await getDocs(initialRequest);
     setUsers({
       total: totalUsersNumber,
+      // @ts-ignore
       users: documentSnapshots.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
@@ -114,8 +115,8 @@ function List() {
   }, []);
 
   useEffect(() => {
+    /* eslint @typescript-eslint/no-floating-promises: 0 */
     getUsers();
-    // Object.fromEntries(searchParams.entries())
   }, [searchParams]);
 
   return (

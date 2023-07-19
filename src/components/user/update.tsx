@@ -19,6 +19,7 @@ const SingleUser = () => {
   });
   const [form] = useForm();
   const [isLoading, setLoading] = useState<boolean>(false);
+  // @ts-ignore
   const [userDb] = useState(doc(db, "users", userId));
   const navigate = useNavigate();
 
@@ -27,6 +28,7 @@ const SingleUser = () => {
     const finalResult = difference.reduce((acc, curValue) => {
       return {
         ...acc,
+        /* eslint @typescript-eslint/no-unsafe-assignment: 0 */ // @ts-ignore
         [curValue]: values[curValue],
       };
     }, {});
@@ -35,6 +37,7 @@ const SingleUser = () => {
       setLoading(true);
       await updateDoc(userDb, finalResult);
       setLoading(false);
+      /* eslint @typescript-eslint/no-floating-promises: 0 */
       getUser();
     }
   };
@@ -48,6 +51,7 @@ const SingleUser = () => {
     const requestedUser = await getDoc(userDb);
     form.setFieldsValue(requestedUser.data());
     setLoading(false);
+    // @ts-ignore
     return setUser(requestedUser.data());
   };
 
@@ -67,6 +71,7 @@ const SingleUser = () => {
       <h3>Update a user</h3>
       <Form
         name="basic"
+        /* ~eslint @typescript-eslint/no-misused-promises: 0  */
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         initialValues={user}

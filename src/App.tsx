@@ -1,9 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import List from "./components/user";
 import UserCreate from "./components/user/create";
 import UserUpdate from "./components/user/update";
