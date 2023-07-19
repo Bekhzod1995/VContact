@@ -1,0 +1,16 @@
+.table-container {
+  width: 80vw;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 99vh;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+}
